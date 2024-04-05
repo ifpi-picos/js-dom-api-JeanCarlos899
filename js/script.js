@@ -37,6 +37,7 @@ function displayTask(task) {
     if (task.completed) {
         li.classList.add('completed');
     }
+    task.date = new Date(task.date).toLocaleDateString('pt-BR');
     li.innerHTML = `
         <div class="task-content">
             <p class="task-title">${task.title}</p>
