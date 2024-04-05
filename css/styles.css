@@ -144,7 +144,6 @@ body {
 
 .task-tag {
     display: flex;
-    padding: 0.2rem;
     border-radius: 0.5rem;
     align-items: center;
     gap: 0.5rem;
@@ -255,4 +254,5 @@ body {
 .task-repo {
     text-decoration: none;
     color: var(--primary-color);
+    font-size: 0.8rem;
 }

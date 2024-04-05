@@ -99,7 +99,6 @@ function displayTask(task) {
     updateTaskCount();
 }
 
-
 function restoreTasks() {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     // Ordenando tarefas: primeiro as não concluídas, depois as concluídas
