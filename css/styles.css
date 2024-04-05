@@ -261,3 +261,8 @@ body {
     color: var(--primary-color);
     font-size: 0.8rem;
 }
+
+.task-description {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
