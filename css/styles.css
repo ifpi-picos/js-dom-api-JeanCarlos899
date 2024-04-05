@@ -148,6 +148,7 @@ body {
     border-radius: 0.5rem;
     align-items: center;
     gap: 0.5rem;
+    font-size: 0.8rem;
     color: var(--secondary-color);
 }
 
@@ -232,4 +233,20 @@ body {
 .completed {
     text-decoration: line-through;
     color: var(--secondary-color);
+}
+
+.task-details {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.task-details span {
+    color: var(--secondary-color);
+}
+
+.task-date {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
 }
