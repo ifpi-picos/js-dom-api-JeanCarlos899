@@ -1,4 +1,4 @@
-# TO-DO List com GitHub Integration
+# TO-DO List com GitHub API
 
 O TO-DO List é uma aplicação web desenvolvida para ajudar desenvolvedores a organizar suas tarefas diárias com uma integração especial ao GitHub, permitindo aos usuários vincular tarefas a repositórios específicos. Este sistema oferece uma maneira simples e intuitiva de adicionar, visualizar, concluir e deletar tarefas, além de salvar as informações diretamente no navegador para acesso futuro.
 
