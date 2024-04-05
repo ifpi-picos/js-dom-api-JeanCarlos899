@@ -86,7 +86,7 @@ function displayTask(task) {
             <button class="btn-delete" onclick="deleteTask(${task.id})">
                 <i class="fas fa-trash-alt"></i>
             </button>
-            <button class="btn-conclude" onclick="concludeTask(${task.id})">Concluir tarefa</button>
+            ${!task.completed ? `<button class="btn-conclude" onclick="concludeTask(${task.id})">Concluir tarefa</button>` : ''}
         </div>
     `;
 
