@@ -1,7 +1,35 @@
-document.addEventListener('DOMContentLoaded', restoreTasks);
-document.querySelector('.btn-task').addEventListener('click', toggleModal);
-document.querySelector('.btn-close').addEventListener('click', toggleModal);
-document.querySelector('.form-task').addEventListener('submit', addTask);
+document.addEventListener('DOMContentLoaded', init);
+
+async function init() {
+
+    let userName = localStorage.getItem('userName');
+    if (userName === null || userName === '') {
+        userName = prompt('Digite seu usuário do GitHub:');
+        localStorage.setItem('userName', userName);
+    }
+
+    await fetchRepositories(userName);
+    restoreTasks();
+    document.querySelector('.btn-task').addEventListener('click', toggleModal);
+    document.querySelector('.btn-close').addEventListener('click', toggleModal);
+    document.querySelector('.form-task').addEventListener('submit', addTask);
+}
+
+async function fetchRepositories(userName) {
+    try {
+        const response = await fetch(`https://api.github.com/users/${userName}/repos`);
+        const repos = await response.json();
+        const selectElement = document.getElementById('task-repo');
+        repos.forEach(repo => {
+            let option = document.createElement('option');
+            option.value = repo.html_url;
+            option.textContent = repo.name;
+            selectElement.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar repositórios:', error);
+    }
+}
 
 function toggleModal() {
     document.querySelector('.modal').classList.toggle('show');
@@ -16,6 +44,7 @@ function addTask(event) {
         description: document.getElementById('task-description').value,
         date: document.getElementById('task-date').value,
         tag: document.getElementById('task-tag').value,
+        repo: document.getElementById('task-repo').value
     };
 
     displayTask(task);
@@ -34,9 +63,11 @@ function saveTask(task) {
 function displayTask(task) {
     const taskList = document.querySelector('.task-list');
     const li = document.createElement('li');
+    li.setAttribute('data-task-id', task.id); // Adiciona um identificador único a cada tarefa para facilitar manipulações futuras
     if (task.completed) {
         li.classList.add('completed');
     }
+    let repoName = task.repo.split('/').pop();
     task.date = new Date(task.date).toLocaleDateString('pt-BR');
     li.innerHTML = `
         <div class="task-content">
@@ -45,6 +76,10 @@ function displayTask(task) {
             <div class="task-details">
                 <span class="task-date">${task.date}</span>
                 <span class="task-tag"><i class="fas fa-tags"></i>${task.tag}</span>
+                <a href="${task.repo}" target="_blank" class="task-repo">
+                    <i class="fab fa-github"></i>
+                    ${repoName}
+                </a>
             </div>
         </div>
         <div class="task-actions">
@@ -55,14 +90,23 @@ function displayTask(task) {
         </div>
     `;
 
-    taskList.appendChild(li);
+    // Inserindo tarefas não concluídas no início e tarefas concluídas no final
+    if (task.completed) {
+        taskList.appendChild(li); // Adiciona tarefas concluídas ao final
+    } else {
+        taskList.prepend(li); // Adiciona tarefas não concluídas ao início
+    }
     updateTaskCount();
 }
 
+
 function restoreTasks() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    // Ordenando tarefas: primeiro as não concluídas, depois as concluídas
+    tasks.sort((a, b) => a.completed - b.completed);
     tasks.forEach(task => displayTask(task));
 }
+
 
 function deleteTask(taskId) {
     let tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -87,5 +131,5 @@ function updateTaskCount() {
     const taskCount = document.querySelector('.task-count');
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const remainingTasks = tasks.filter(task => !task.completed).length;
-    taskCount.textContent = `${remainingTasks} tarefa restante${remainingTasks !== 1 ? 's' : ''}`;
+    taskCount.textContent = `${remainingTasks} tarefa(s) restante(s)`;
 }

@@ -13,7 +13,7 @@
     <div class="flex-container">
         <div class="content">
             <header>
-                <h1>Minhas tarefas</h1>
+                <h1>Meus projetos</h1>
                 <span class="task-count">2 tarefas</span>
             </header>
             <ul class="task-list">
@@ -41,6 +41,11 @@
                     <input type="date" id="task-date" name="task-date" required>
                     <label for="task-tag">Tag</label>
                     <input type="text" id="task-tag" name="task-tag" placeholder="Insira a tag da tarefa" required>
+                    <label for="task-repo">Repositório de trabalho</label>
+                    <select name="task-repo" id="task-repo" required>
+                        <!-- As opções serão adicionadas dinamicamente -->
+                    </select>
+
 
                     <input type="submit" value="Enviar">
                 </form>

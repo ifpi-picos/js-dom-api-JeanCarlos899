@@ -199,7 +199,8 @@ body {
 
 .form-task input[type="text"],
 .form-task input[type="date"],
-.form-task textarea {
+.form-task textarea,
+#task-repo {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
@@ -249,4 +250,9 @@ body {
     display: flex;
     align-items: center;
     font-size: 0.8rem;
+}
+
+.task-repo {
+    text-decoration: none;
+    color: var(--primary-color);
 }
