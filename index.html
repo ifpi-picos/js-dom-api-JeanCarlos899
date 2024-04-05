@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management UI</title>
+    <script src="https://kit.fontawesome.com/afaa046a39.js" crossorigin="anonymous" async></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="content">
+            <header>
+                <h1>Minhas tarefas</h1>
+                <span class="task-count">2 tarefas</span>
+            </header>
+            <ul class="task-list">
+            </ul>
+            <button class="btn-task">
+                <span>+</span>
+                Adicionar tarefa
+            </button>
+        </div>
+        <div class="modal">
+            <div class="modal-content">
+                <header>
+                    <h2>Adicionar tarefa</h2>
+                    <button class="btn-close">
+                        &times;
+                    </button>
+                </header>
+                <form action="" class="form-task">
+                    <label for="task-title">Título</label>
+                    <input type="text" id="task-title" name="task-title" placeholder="Insira o título da tarefa"
+                        required>
+                    <label for="task-description">Descrição</label>
+                    <textarea name="task-description" id="task-description" cols="30" rows="10" required></textarea>
+                    <label for="task-date">Data</label>
+                    <input type="date" id="task-date" name="task-date" required>
+                    <label for="task-tag">Tag</label>
+                    <input type="text" id="task-tag" name="task-tag" placeholder="Insira a tag da tarefa" required>
+
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
