@@ -74,8 +74,8 @@ function displayTask(task) {
             <p class="task-title">${task.title}</p>
             <p class="task-description">${task.description}</p>
             <div class="task-details">
-                <span class="task-date">${task.date}</span>
                 <span class="task-tag"><i class="fas fa-tags"></i>${task.tag}</span>
+                <span class="task-date">${task.date}</span>
                 <a href="${task.repo}" target="_blank" class="task-repo">
                     <i class="fab fa-github"></i>
                     ${repoName}
